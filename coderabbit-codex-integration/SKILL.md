@@ -39,7 +39,20 @@ Run:
 coderabbit auth login
 ```
 
-If Codex doesn’t surface an auth URL, request it explicitly and complete the login in your browser, then paste the token back. Expect that Codex may re-run `coderabbit auth login`; reuse the existing token if it still works.
+Then follow the interactive flow:
+
+- Copy the OAuth URL printed by CodeRabbit and send it to the user.
+- The user opens the URL, completes OAuth, and replies with the final callback string as plain text (a single line; often resembles `coderabbit-cli://auth-callback?code=...` or an encoded string).
+- Paste that exact callback string into the waiting `coderabbit auth login` prompt and press Enter.
+
+Non-interactive alternative (sometimes works in Codex):
+
+```sh
+token='<paste callback string here>'
+printf '%s\n' "$token" | coderabbit auth login
+```
+
+If Codex doesn’t surface an auth URL, request it explicitly and ask for the URL output. If Codex re-runs `coderabbit auth login`, reuse the existing callback string if it still works.
 
 Verify authentication:
 
@@ -88,6 +101,10 @@ it needs to fix any issues it might find.
 - Verify `git status` (reviews focus on tracked changes).
 - Confirm you’re reviewing code files (not only docs/config).
 - Try detailed output: `coderabbit --plain`.
+
+### Benign `unlink` failures
+
+- If `coderabbit` prints `unlink ... failed` while running, ignore it and continue; it doesn’t block authentication or reviews as long as `coderabbit` completes successfully.
 
 ### Codex not applying fixes
 
