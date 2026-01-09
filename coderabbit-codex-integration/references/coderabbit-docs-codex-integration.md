@@ -31,3 +31,25 @@ Derived from `https://docs.coderabbit.ai/cli/codex-integration`.
 
 - If CodeRabbit finds nothing: check auth, check `git status`, confirm you're reviewing code files, try `--plain`.
 - If Codex doesn't apply fixes: check `coderabbit auth status`, ensure `--prompt-only`, be explicit (“fix the issues found by CodeRabbit”), confirm review finished, and allow long runtime.
+
+## CLI help: `coderabbit review -h`
+
+Captured output:
+
+```text
+Usage: coderabbit review [options]
+
+AI-driven code reviews with interactive or plain text output (default)
+
+Options:
+  -V, --version            output the version number
+  --plain                  Output in plain text format (non-interactive)
+  --prompt-only            Show only AI agent prompts (implies --plain)
+  -t, --type <type>        Review type: all, committed, uncommitted (default: "all")
+  -c, --config <files...>  Additional instructions for CodeRabbit AI (e.g., claude.md, coderabbit.yaml)
+  --base <branch>          Base branch for comparison
+  --base-commit <commit>   Base commit on current branch for comparison
+  --cwd <path>             Working directory path
+  --no-color               Disable colored output
+  -h, --help               display help for command
+```
