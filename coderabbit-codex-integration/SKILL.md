@@ -57,6 +57,7 @@ Prefer AI-friendly output:
 Let the review finish; it may take 8–30+ minutes depending on the change size. After the review completes:
 
 - Read the `--prompt-only` output and convert it into a checklist of findings.
+- If the output ends with `Review completed ✔` and there are no `=============`-separated finding blocks above it, CodeRabbit didn’t report any issues and you can safely stop the review loop.
 - Implement fixes with minimal, focused changes.
 - Continue until all important findings are addressed; if work stops early, explicitly continue with remaining findings.
 - Re-run CodeRabbit and repeat until critical issues are resolved.
