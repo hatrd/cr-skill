@@ -70,7 +70,7 @@ Prefer AI-friendly output:
 Let the review finish; it may take 8–30+ minutes depending on the change size. After the review completes:
 
 - Read the `--prompt-only` output and convert it into a checklist of findings.
-- If the output ends with `Review completed ✔` and there are no `=============`-separated finding blocks above it, CodeRabbit didn’t report any issues and you can safely stop the review loop.
+- In `--prompt-only`, findings are emitted as `=============`-separated blocks. If you only see `Review completed ✔` (and no `=============` blocks above it), CodeRabbit didn’t report any issues and you can safely stop the review loop.
 - Implement fixes with minimal, focused changes.
 - Continue until all important findings are addressed; if work stops early, explicitly continue with remaining findings.
 - Re-run CodeRabbit and repeat until critical issues are resolved.
@@ -101,6 +101,11 @@ it needs to fix any issues it might find.
 - Verify `git status` (reviews focus on tracked changes).
 - Confirm you’re reviewing code files (not only docs/config).
 - Try detailed output: `coderabbit --plain`.
+
+### Only `Review completed ✔`
+
+- In `--prompt-only`, findings are emitted as `=============`-separated blocks. If none appear, treat it as a clean run (no findings).
+- If you suspect terminal/UI truncation, rerun via `scripts/run_coderabbit_prompt_only.sh` and inspect the saved `coderabbit_prompt_only.txt` output (set `CODERABBIT_OUTPUT` to avoid overwriting).
 
 ### Benign `unlink` failures
 
